@@ -1,0 +1,28 @@
+package javaExp;
+
+class Numbers implements Runnable {
+	public void run() {
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(i);
+		}
+	}
+}
+
+class Alphabets implements Runnable {
+	public void run() {
+		for (char i = 'A'; i <= 'E'; i++) {
+			System.out.println(i);
+		}
+	}
+}
+
+public class multithreading {
+	public static void main(String[] args) {
+		Numbers obj = new Numbers();
+		Alphabets obj1 = new Alphabets();
+		Thread t1 = new Thread(obj);
+		Thread t2 = new Thread(obj1);
+		t1.start();
+		t2.start();
+	}
+}

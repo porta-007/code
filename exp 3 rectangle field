@@ -1,59 +1,67 @@
-package javaExp;
+package anything;
 
-import java.util.Scanner;
+import java.io.*;
 
- class Rectangle {
-	Double length = 0.0;
-	Double width = 0.0;
-	String colour = "";
-	Double area = 0.0;
-	Scanner scanner = new Scanner(System.in);
+import java.util.*;
 
-	public Double getLength() {
-		System.out.println("Enter the Length");
-		length = scanner.nextDouble();
-		return length;
-	}
+class Rect
 
-	public Double getWidth() {
-		System.out.println("Enter the width");
-		width = scanner.nextDouble();
-		return width;
-	}
+{
 
-	public String getColour() {
-		System.out.println("Enter the colour");
-		colour = scanner.next();
-		return colour;
-	}
+  double width,length,area;
 
-	public Double findArea() {
-		area = length * width;
-		System.out.println("Area is" + area);
-		return area;
-	}
+  String color;
+
+  Scanner sc=new Scanner(System.in);
+
+   Rect()
+
+   {  
+
+   System.out.print("Enter the length: ");
+
+   length=sc.nextDouble();
+
+   System.out.print("Enter the width: ");
+
+   width=sc.nextDouble(); 
+
+   System.out.print("Enter the color: ");
+
+    color=sc.next();
+
+    area=length*width;
+
+    System.out.println("Area of Rectangle: "+area);
+
+   }
+
 }
 
+class Demo
 
-public class exp2_rect {
-	public static void main(String[] args) {
-		System.out.println("First Rectangle");
-		Rectangle rect1 = new Rectangle();
-		rect1.getLength();
-		rect1.getWidth();
-		rect1.getColour();
-		rect1.findArea();
-		System.out.println("Second Rectangle");
-		Rectangle rect2 = new Rectangle();
-		rect2.getLength();
-		rect2.getWidth();
-		rect2.getColour();
-		rect2.findArea();
+{
 
-		if (rect1.area == rect2.area || rect1.colour.equals(rect2.colour))
-			System.out.println("Matching");
-		else
-			System.out.println("Not matching");
+   public static void main(String arg[])
 
-	}
+   {
+
+   System.out.println("First Rectangle: ");
+
+   Rect r1=new Rect();
+
+   System.out.println("Second Rectangle: ");
+
+   Rect r2=new Rect();
+
+   if(r1.area==r2.area && r1.color.equals(r2.color))
+
+          System.out.println("Matching Rectangle ");
+
+   else
+
+          System.out.println("Non Matching Rectangle ");
+
+   }
+
 }

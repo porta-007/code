@@ -1,0 +1,35 @@
+package javaExp;
+
+
+
+class construc {
+	
+	int id;
+	String name;
+
+	 construc() {
+		System.out.println("Default constructor");
+		}
+
+	 construc (int a,String b){
+		 System.out.println("paratermised constructor"); 
+		id=a;
+		name=b;
+		}
+
+	
+}
+
+public class constructorOverloading {
+
+
+	public static void main(String[] args) {
+		construc con= new construc();
+		
+		System.out.println("Student Id : "+con.id + "\nStudent Name : "+con.name);
+
+		construc con2=new construc(10, "Ram");
+
+		System.out.println("Student Id : "+con2.id + "\nStudent Name : "+con2.name);
+		}
+}

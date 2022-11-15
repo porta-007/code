@@ -1,0 +1,59 @@
+package javaExp;
+
+import java.util.Scanner;
+
+ class Rectangle {
+	Double length = 0.0;
+	Double width = 0.0;
+	String colour = "";
+	Double area = 0.0;
+	Scanner scanner = new Scanner(System.in);
+
+	public Double getLength() {
+		System.out.println("Enter the Length");
+		length = scanner.nextDouble();
+		return length;
+	}
+
+	public Double getWidth() {
+		System.out.println("Enter the width");
+		width = scanner.nextDouble();
+		return width;
+	}
+
+	public String getColour() {
+		System.out.println("Enter the colour");
+		colour = scanner.next();
+		return colour;
+	}
+
+	public Double findArea() {
+		area = length * width;
+		System.out.println("Area is" + area);
+		return area;
+	}
+}
+
+
+public class exp2_rect {
+	public static void main(String[] args) {
+		System.out.println("First Rectangle");
+		Rectangle rect1 = new Rectangle();
+		rect1.getLength();
+		rect1.getWidth();
+		rect1.getColour();
+		rect1.findArea();
+		System.out.println("Second Rectangle");
+		Rectangle rect2 = new Rectangle();
+		rect2.getLength();
+		rect2.getWidth();
+		rect2.getColour();
+		rect2.findArea();
+
+		if (rect1.area == rect2.area || rect1.colour.equals(rect2.colour))
+			System.out.println("Matching");
+		else
+			System.out.println("Not matching");
+
+	}
+}

@@ -1,0 +1,42 @@
+package javaExp;
+
+import java.util.*;
+
+public class Calculator {
+
+	public static void main(String[] args) {
+		Double a, b, result;
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter an operator: 1. +, 2. -, 3. *, or 4. /");
+		int operator = input.nextInt();
+
+		System.out.println("Enter first number");
+		a = input.nextDouble();
+		System.out.println("Enter second number");
+		b = input.nextDouble();
+		switch (operator) {
+
+		case 1:
+			result = a + b;
+			System.out.println(a + " + " + b + " = " + result);
+			break;
+		case 2:
+			result = a - b;
+			System.out.println(a + " - " + b + " = " + result);
+			break;
+		case 3:
+			result = a * b;
+			System.out.println(a + " * " + b + " = " + result);
+			break;
+		case 4:
+			result = a / b;
+			System.out.println(a + " / " + b + " = " + result);
+			break;
+		default:
+			System.out.println("Invalid operator!");
+			break;
+		}
+
+	}
+
+}

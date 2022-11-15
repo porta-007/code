@@ -1,0 +1,28 @@
+package javaExp;
+import java.io.*;
+import java.util.*;
+
+public class sorting {
+	
+	public static void main(String[] args)
+	{
+	int n = 4;
+	int numbers[]= {5,4,3,2};
+	String names[] = { "Raj", "Ajay", "Pari", "Riya" };
+	Arrays.sort(names);
+	
+	System.out.println("sort numbers and names : \n");
+	
+	System.out.println("The names in alphabetical order are: ");
+	for (int i = 0; i < n; i++) {
+	System.out.println(names[i]);
+	}
+	
+	Arrays.sort(numbers);
+	System.out.println("The num in order are: ");
+	for (int i = 0; i < n; i++) {
+	System.out.println(numbers[i]);
+	}
+
+	}
+}

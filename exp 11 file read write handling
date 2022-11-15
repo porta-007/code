@@ -1,0 +1,27 @@
+
+package javaExp;
+
+import java.io.*;
+
+public class filehandling {
+
+	public static void main(String[] args) {
+		try {
+			int character;
+			String line = "";
+			FileReader reader = new FileReader("E:\\readME.txt");
+			FileWriter writer = new FileWriter("E:\\readMe2.txt");
+			while ((character = reader.read()) != -1) {
+				line += (char) character;
+			}
+			System.out.println("Text from File 1: " + line);
+			System.out.println("Writing data from File 1 to File 2...");
+			writer.write(line);
+			System.out.println("Writing Done!");
+			reader.close();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

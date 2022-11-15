@@ -1,0 +1,34 @@
+package javaExp;
+
+public class ExceptionHandling {
+
+	public static void main(String[] args) {
+		int a = 0;
+		int b = 4;
+		int arr[] = { 1, 2, 3, 4, 5 };
+
+		try {
+			int c = b / a;
+			System.out.println("c = " + c);
+		}
+
+		catch (ArithmeticException e) {
+			System.out.println("Arithmetic Exception Handling:");
+			e.printStackTrace();
+		}
+
+		try {
+
+			arr[7] = 10;
+
+		} catch (ArrayIndexOutOfBoundsException f) {
+			System.out.println("Array Index Out of Bounds Exception Handling:");
+			f.printStackTrace();
+		}
+
+		finally {
+			System.out.println("Finally Block Executed.");
+		}
+
+	}
+}

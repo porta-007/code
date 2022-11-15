@@ -1,0 +1,31 @@
+package javaExp;
+
+interface Area {
+	final static float pi = 3.14f;
+
+	float compute(float x, float y);
+}
+
+class Rectangle implements Area {
+	public float compute(float x, float y) {
+		return (x * y);
+	}
+}
+
+class circle implements Area {
+	public float compute(float x, float y) {
+		return (pi * x * x);
+	}
+}
+
+class Interface {
+	public static void main(String args[]) {
+		Rectangle r1 = new Rectangle();
+		circle c1 = new circle();
+		Area a;
+		a = r1;
+		System.out.println("Area of a rectangle=" + a.compute(10, 20));
+		a = c1;
+		System.out.println("Area of a circle=" + a.compute(10, 0));
+	}
+}

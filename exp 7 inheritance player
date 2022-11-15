@@ -1,0 +1,65 @@
+package javaExp;
+
+class Player {
+	String name;
+	String type;
+	int age;
+
+	Player(String n, int a, String t) {
+		name = n;
+		age = a;
+		type = t;
+	}
+
+	void show() {
+		System.out.println("Player name: " + name);
+		System.out.println("Age: " + age);
+		System.out.println("Type: " + type);
+	}
+}
+
+class cricket_player extends Player {
+
+	cricket_player(String n, String t, int a) {
+		super(n, a, t);
+	}
+
+	public void show() {
+		super.show();
+	}
+}
+
+class football_player extends Player {
+
+	football_player(String n, String t, int a) {
+		super(n, a, t);
+
+	}
+
+	public void show() {
+		super.show();
+	}
+}
+
+class hockey_player extends Player {
+
+	hockey_player(String n, String t, int a) {
+		super(n, a, t);
+	}
+
+	public void show() {
+
+		super.show();
+	}
+}
+
+class Inheritance {
+	public static void main(String args[]) {
+		cricket_player c = new cricket_player("Ankit", "Cricket", 20);
+		football_player f = new football_player("Namrata", "Football", 21);
+		hockey_player h = new hockey_player("Aditya", "Hockey", 22);
+		c.show();
+		f.show();
+		h.show();
+	}
+}

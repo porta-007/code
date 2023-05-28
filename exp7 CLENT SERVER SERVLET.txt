@@ -1,0 +1,95 @@
+/* Dynamic*/
+
+/*main-java-checkerfinal.java*/
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/checkerfinal")
+public class checkerfinal extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public checkerfinal() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String user = request.getParameter("uname");
+        String pass = request.getParameter("password");
+        
+        if (user.equals("harsh") && pass.equals("12345")) {
+            response.sendRedirect("member.jsp");
+        } else {
+            response.sendRedirect("error.jsp");
+        }
+        
+        doGet(request, response);
+    }
+}
+
+
+/*webapp-WEB-INF-login.jsp*/
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>login</title>
+</head>
+<body>
+<form action="checkerfinal" method="post">
+<table>
+<tr>
+ <td>User Name</td>
+ <td><input type="text" name="uname"></td>
+</tr>
+<tr>
+ <td>Password</td>
+ <td><input type="password" name="password"></td>
+</tr>
+</table>
+ <input type="submit" value="Login">
+</body>
+</html>
+
+
+/*webapp-WEB-INF-member.jsp*/
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>login done</title>
+</head>
+<body>
+login successful
+</body>
+</html>
+
+/*webapp-WEB-INF-error.jsp*/
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Fail</title>
+</head>
+<body>
+failed
+</body>
+</html>
+

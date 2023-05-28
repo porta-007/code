@@ -1,0 +1,101 @@
+ package eight;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
+public class exp_8 {
+public static void main(String[] args) throws SQLException {
+Connection con = null;
+String url = "jdbc:mysql://localhost:3306/jdbcdb";
+String usr = "root";
+String psw = "root";
+try {
+con = DriverManager.getConnection(url, usr, psw);
+}catch (SQLException e) {
+e.printStackTrace();
+}
+Scanner scanner = new Scanner(System.in);
+char b='Y';
+while(b=='Y'||b=='y') {
+System.out.println("Select CRUD operation:");
+System.out.println("1. Create");
+System.out.println("2. Read");
+System.out.println("3. Update");
+System.out.println("4. Delete");
+int choice = scanner.nextInt();
+switch(choice) {
+case 1: // Create
+	PreparedStatement ps = con.prepareStatement("insert into personalinfo values(?,?,?)");
+	System.out.println("Enter Id:");
+	int Id = scanner.nextInt();
+	System.out.println("Enter name:");
+	String name = scanner.next();
+	System.out.println("Enter age:");
+	int age = scanner.nextInt();
+	ps.setInt(1, Id);
+	ps.setString(2,name);
+	ps.setInt(3, age);
+	ps.execute();
+	System.out.println("Record created successfully.");
+	break;
+case 2: // Read
+		try {
+		String query = "SELECT * FROM personalinfo WHERE id= ?";
+	PreparedStatement readStatement = con.prepareStatement(query);
+	System.out.println("Enter ID of record to read:");
+	int id = scanner.nextInt();
+	readStatement.setInt(1,id);
+	ResultSet resultSet = readStatement.executeQuery();
+	if(resultSet.next()) {
+	System.out.println("Id: "+resultSet.getString("Id"));
+	System.out.println("Name: "+resultSet.getString("name"));
+	System.out.println("Age: "+resultSet.getInt("age"));
+	} else {
+	System.out.println("Record not found.");
+	}
+	resultSet.close();
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+	break;
+case 3: // update
+try {
+String query1 = "Update personalinfo set name=?, age=? where Id = ?";
+PreparedStatement updateStatement = con.prepareStatement(query1);
+System.out.println("Enter ID of record to update:");
+int id = scanner.nextInt();
+System.out.println("Enter new name:");
+String name1 = scanner.next();
+System.out.println("Enter new age:");
+int age1 = scanner.nextInt();
+updateStatement.setString(1, name1);
+updateStatement.setInt(2, age1);
+updateStatement.setInt(3, id);
+updateStatement.executeUpdate();
+System.out.println("Record updated successfully.");
+}catch (SQLException e) {
+e.printStackTrace();
+}
+break;
+case 4:
+String query2 = "DELETE FROM personalinfo WHERE id=?";
+PreparedStatement deleteStatement = con.prepareStatement(query2);
+System.out.println("Enter ID of record to Delete:");
+int id = scanner.nextInt();
+deleteStatement.setInt(1, id);
+deleteStatement.execute();
+System.out.println("Record updated successfully.");
+}
+System.out.println("Do you want to continue press Y/n");
+b = scanner.next().charAt(0);
+if(b=='y'||b=='Y') {continue;}
+else {break;}
+}
+}
+}
+
+
+/////////////connector////////////

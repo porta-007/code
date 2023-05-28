@@ -1,0 +1,117 @@
+/*DYNAMIC*/
+/*main-java*/
+
+Registration.java
+
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Registration
+ */
+@WebServlet("/Registration")
+public class Registration extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Registration() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		//doGet(request, response);
+		String username = request.getParameter("user1");
+		String pass = request.getParameter("pwd");
+		String mail = request.getParameter("email");
+		String place = request.getParameter("country");
+		//System.out.println("User : " + username);
+		UserDao d = new UserDao();
+		String msg = d.readUser(username, pass, mail, place);
+		response.getWriter().print(msg);
+	}
+
+}
+
+
+UserDao.java
+
+import java.sql.*;
+public class UserDao {
+public String readUser(String user, String pwd, String email, String country){
+Connection con = null;
+String url = "jdbc:mysql://localhost:3306/jdbcdb";
+String usr = "root";
+String psw = "root";
+String query = "insert into login values(?,?,?,?)";
+String str ="";
+try {
+Class.forName("com.mysql.cj.jdbc.Driver");
+con = DriverManager.getConnection(url, usr, psw);
+PreparedStatement ps = con.prepareStatement(query);
+ps.setString(1,user);
+ps.setString(2,pwd);
+ps.setString(3,email);
+ps.setString(4,country);
+ps.execute();
+str = "Data inserted succesfully";
+}catch (SQLException e) {
+e.printStackTrace();
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+return str;
+}
+}
+
+
+
+/*webapp-WEB-INF*/
+
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+</head>
+<body>
+<form action = "Registration" method = "post">
+<label>Username: </label>
+<input type="text" name="user1">
+<br>
+<label>Password:</label>
+<input type="password" name = "pwd">
+<br>
+<label>Email Id:</label>
+<input type="text" name = "email">
+<br>
+<label>Country:</label>
+<input type="text" name = "country">
+<br>
+<input type="submit" name = "Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+/*DYNAMIC*/
+/*main-java-webapp-WEB-INF*/
+
+/*index.html*/
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cube of Number</title>
+</head>
+<body>
+<form action = "reger.jsp">
+<label>Enter the number:</label>
+<input type="text" name = "no">
+<br>
+<input type="submit" name = "Submit">
+</form>
+</body>
+</html>
+
+
+/*reger.jsp*/
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String s = request.getParameter("no");
+int n = Integer.parseInt(s);
+int c = n*n*n;
+out.print("Entered no : "+n);
+out.print("<br><br>");
+out.print("Cube is: "+c);
+%>
+</body>
+</html>

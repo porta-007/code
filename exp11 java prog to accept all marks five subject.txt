@@ -1,0 +1,46 @@
+exp11: java prog to accept all marks 
+
+
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class StudentMarks {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost:3306/mydatabase"; // change mydatabase to your database name
+		String username = "root"; // change root to your database username
+		String password = "aditya"; // change password to your database password
+		try {
+			Connection conn = DriverManager.getConnection(url, username, password);
+// Collecting input from the user
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Enter marks for 5 subjects:");
+			int[] marks = new int[5];
+			for (int i = 0; i < 5; i++) {
+				marks[i] = scanner.nextInt();
+			}
+// Inserting data into the database
+			PreparedStatement pstmt = conn.prepareStatement(
+					"INSERT INTO new_table (subject1, subject2, subject3, subject4,subject5) VALUES (?, ?, ?, ?, ?)");
+			pstmt.setInt(1, marks[0]);
+			pstmt.setInt(2, marks[1]);
+			pstmt.setInt(3, marks[2]);
+			pstmt.setInt(4, marks[3]);
+			pstmt.setInt(5, marks[4]);
+			pstmt.executeUpdate();
+// Creating a view to display the average marks obtained by the student 
+			Statement stmt = conn.createStatement();
+			String sql = "CREATE VIEW student_avg_marks AS SELECT AVG(subject1+subject2+subject3+subject4+subject5)/5 as avg_marks FROM new_table";
+			stmt.executeUpdate(sql);
+// Retrieving the average marks from the view and displaying them 
+			ResultSet rs = stmt.executeQuery("SELECT * FROM student_avg_marks");
+			while (rs.next()) {
+				System.out.println("Average Marks: " + rs.getInt("avg_marks"));
+			}
+			conn.close();
+			scanner.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
